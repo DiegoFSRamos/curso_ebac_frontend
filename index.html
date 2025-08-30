@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+</head>
+<body>
+    
+    <form style="max-width: 332px; margin: 0 auto;">
+
+        <h1>Formulário de Cadastro</h1>
+    </form>
+        <form style="max-width: 250px; margin: 0 auto;">
+    
+        <label for="nome" style="display:block; margin-top:15px;">Nome:</label>
+        <input type="text" id="nome" placeholder="Digite seu nome" style="width: 100%; padding: 10px;">
+<script>
+const nomeInput = document.getElementById('nome');
+
+nomeInput.addEventListener('input', () => {
+    // Remove tudo que não for letra ou espaço
+    nomeInput.value = nomeInput.value.replace(/[^a-zA-Z\s]/g, '');
+});
+</script>
+
+        
+        <label for="email" style="display:block; margin-top:15px;">E-mail:</label>
+        <input type="email" id="email" placeholder="Digite seu e-mail" style="width: 100%; padding: 10px;">
+
+        
+        <label for="senha" style="display:block; margin-top:15px;">Senha:</label>
+        <input type="password" id="senha" placeholder="Digite sua senha" style="width: 100%; padding: 10px;">
+        
+        <label for="telefone" style="display:block; margin-top:15px;">Telefone:</label>
+        <input type="tel" id="telefone" maxlength="19" placeholder="+55 (__) _____-____"style="width: 100%; padding: 10px;">
+
+<script>
+const input = document.getElementById('telefone');
+
+input.addEventListener('input', () => {
+    // Remove tudo que não for número
+    let numeros = input.value.replace(/\D/g, '');
+
+    // Remove o 55 inicial se já tiver
+    if (numeros.startsWith('55')) {
+        numeros = numeros.slice(2);
+    }
+
+    // Pega o DDD (2 primeiros dígitos) e o resto do número
+    let ddd = numeros.substring(0,2);
+    let resto = numeros.substring(2, 14); // até 9 dígitos
+
+    // Formata com parênteses e traço
+    let telefoneFormatado = '+55 ';
+    if(ddd) telefoneFormatado += `(${ddd}) `;
+    if(resto.length > 5) {
+        telefoneFormatado += `${resto.substring(0,5)}-${resto.substring(5)}`;
+    } else {
+        telefoneFormatado += resto;
+    }
+
+    input.value = telefoneFormatado;
+});
+</script>
+
+        <br />
+        <button id="cadastro">Cadastro</button>
+        
+        <style>
+  #cadastro {
+    background-color: #4ca433; /* cor do botão */
+    color: rgb(255, 255, 255);             /* cor do texto */
+    padding: 8px 15px;       /* espaço interno */
+    border: none;             /* tira a borda padrão */
+    border-radius: 6px;       /* cantos arredondados */
+    cursor: pointer;          /* muda o cursor ao passar em cima */
+    font-size: 16px;          /* tamanho da fonte */
+
+    /* CENTRALIZAR */
+    display: block;
+    margin:20px auto 0    /* topo 20px, auto nas laterais, 0 embaixo */
+  }
+
+  #cadastro:hover {
+    background-color: #1b5719; /* muda a cor ao passar o mouse */
+  }
+</style>
+
+        <script>
+  const botao = document.getElementById('cadastro');
+
+  botao.addEventListener('click', () => {
+    alert('Cadastro realizado!');
+    // Aqui você pode colocar o que acontece ao clicar
+    // ex: enviar formulário, validar campos, etc.
+  });
+</script>
+
+    </form></form>
+</body>
+</html>
